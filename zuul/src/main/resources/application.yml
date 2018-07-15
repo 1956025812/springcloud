@@ -1,0 +1,21 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8760/eureka/
+
+server:
+  port: 8763
+
+spring:
+  application:
+    name: zuul
+
+# 路由： http://localhost:8763/prefix1/sayHello?name=dxb会自动将路由转发到ribbon服务
+zuul:
+  routes:
+    prefix1:
+      path: /prefix1/**
+      serviceId: ribbon
+    prefix2:
+      path: /prefix2/**
+      serviceId: feign
